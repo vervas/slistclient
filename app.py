@@ -18,6 +18,21 @@ def lists():
     result = json.loads(response.content)
     return render_template('lists.jinja', lists=result.items())
 
+@app.route('/lists/new', methods=['GET', 'POST'])
+def new_list():
+    if request.method == 'POST':
+        payload = {'name': request.form['name'], 'user_id': '529ce92211ad271e22ccf355'}
+        response = requests.post(SERVICE_BASE_URL + 'lists', payload)
+        if response.status_code == 201:
+            return redirect('lists')
+    return render_template('new_list.jinja')
+
+
+@app.route('/lists/<list_id>')
+def delete_list(list_id):
+    response = requests.delete(SERVICE_BASE_URL + 'lists/' + list_id)
+    return redirect('lists')
+
 
 @app.route('/lists/<list_id>/items')
 def items(list_id):
@@ -40,12 +55,6 @@ def new_item(list_id):
 def delete_item(list_id, name):
     response = requests.delete(SERVICE_BASE_URL + 'lists/' + list_id + '/items/' + name)
     return redirect('lists/{}/items'.format(list_id))
-
-
-@app.route('/lists/<list_id>')
-def delete_list(list_id):
-    response = requests.delete(SERVICE_BASE_URL + 'lists/' + list_id)
-    return redirect('lists')
 
 
 @app.route('/profile/<user_id>')
