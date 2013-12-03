@@ -4,13 +4,13 @@
 {% block content %}
     <p>
         <a href='/lists' class="btn btn-primary" type="button">Lists</a>
-        <a href='#' class="btn btn-success" type="button">Add Item</a>
+        <a href='./items/new' class="btn btn-success" type="button">Add Item</a>
     </p>
     <p><ul class="list-group">
         {% for item in items %}
             <li class="list-group-item">
-                <a href='#' type="button" class="btn btn-danger">X</a>
-                <a href='#'><strong>{{item['name']}}</strong></a>
+                <a href="./items/{{item['name']}}" type="button" class="btn btn-danger">X</a>
+                <strong>{{item['name']}}</strong>
                 <span class="badge">{{item['priority']}}</span>
             </li>
         {% endfor %}
