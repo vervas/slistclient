@@ -10,7 +10,7 @@
         {% for item in items %}
             <li class="list-group-item">
                 <a href='#' type="button" class="btn btn-danger">X</a>
-                <strong>{{item['name']}}</strong>
+                <a href='#'><strong>{{item['name']}}</strong></a>
                 <span class="badge">{{item['priority']}}</span>
             </li>
         {% endfor %}
