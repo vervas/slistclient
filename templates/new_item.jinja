@@ -1,0 +1,18 @@
+{% extends 'layout.jinja' %}
+
+{% block title %}New Item{% endblock %}
+{% block content %}
+<form class="form-signin" method=post>
+        <h2 class="form-signin-heading">Please enter an item</h2>
+        <input type="text" class="form-control" placeholder="Item name" required autofocus name='name'>
+        <select name='priority' class="form-control">
+          <option>Priority</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Add Item</button>
+</form>
+{% endblock %}
