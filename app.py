@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request
+import os
 import requests
 import json
 app = Flask(__name__)
@@ -80,4 +81,10 @@ def signup():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    try:
+        port=int(os.environ['PORT'])
+    except KeyError:
+        port=5000
+
+    app.debug=True
+    app.run(host='0.0.0.0', port=port)
