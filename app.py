@@ -19,6 +19,7 @@ def lists():
     result = json.loads(response.content)
     return render_template('lists.jinja', lists=result.items())
 
+
 @app.route('/lists/new', methods=['GET', 'POST'])
 def new_list():
     if request.method == 'POST':
@@ -82,9 +83,9 @@ def signup():
 
 if __name__ == "__main__":
     try:
-        port=int(os.environ['PORT'])
+        port = int(os.environ['PORT'])
     except KeyError:
-        port=5000
+        port = 5000
 
-    app.debug=True
+    app.debug = True
     app.run(host='0.0.0.0', port=port)
