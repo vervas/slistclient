@@ -8,7 +8,7 @@ try:
     SERVICE_BASE_URL = os.environ['SERVICE_BASE_URL']
     USER_ID = os.environ['USER_ID']
 except KeyError:
-    SERVICE_BASE_URL = 'http://localhost:5000'
+    SERVICE_BASE_URL = 'http://localhost:5000/'
     USER_ID = ''
 
 
