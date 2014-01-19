@@ -6,8 +6,10 @@ app = Flask(__name__)
 
 try:
     SERVICE_BASE_URL = os.environ['SERVICE_BASE_URL']
+    USER_ID = os.environ['USER_ID']
 except KeyError:
     SERVICE_BASE_URL = 'http://localhost:5000'
+    USER_ID = ''
 
 
 @app.route("/")
@@ -25,7 +27,7 @@ def lists():
 @app.route('/lists/new', methods=['GET', 'POST'])
 def new_list():
     if request.method == 'POST':
-        payload = {'name': request.form['name'], 'user_id': '529ce92211ad271e22ccf355'}
+        payload = {'name': request.form['name'], 'user_id': USER_ID}
         response = requests.post(SERVICE_BASE_URL + 'lists', payload)
         if response.status_code == 201:
             return redirect('lists')
