@@ -4,8 +4,10 @@ import requests
 import json
 app = Flask(__name__)
 
-
-SERVICE_BASE_URL = 'http://snf-24511.vm.okeanos.grnet.gr:5000/'
+try:
+    SERVICE_BASE_URL = os.environ['SERVICE_BASE_URL']
+except KeyError:
+    SERVICE_BASE_URL = 'http://localhost:5000'
 
 
 @app.route("/")
@@ -32,7 +34,7 @@ def new_list():
 
 @app.route('/lists/<list_id>')
 def delete_list(list_id):
-    response = requests.delete(SERVICE_BASE_URL + 'lists/' + list_id)
+    requests.delete(SERVICE_BASE_URL + 'lists/' + list_id)
     return redirect('lists')
 
 
@@ -55,7 +57,7 @@ def new_item(list_id):
 
 @app.route('/lists/<list_id>/items/<name>')
 def delete_item(list_id, name):
-    response = requests.delete(SERVICE_BASE_URL + 'lists/' + list_id + '/items/' + name)
+    requests.delete(SERVICE_BASE_URL + 'lists/' + list_id + '/items/' + name)
     return redirect('lists/{}/items'.format(list_id))
 
 
